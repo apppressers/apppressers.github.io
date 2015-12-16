@@ -11,7 +11,7 @@ Although you can use them, for a more unique website, replace these images with 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>Wp2android - Turn WordPress to Android app Free version</title>
+    <title>WPBlog 2 Android App CodeCanyon.net</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -108,6 +108,91 @@ Although you can use them, for a more unique website, replace these images with 
                 <div class="col-sm-6">
                 	<h2 class="section-header">Best in Class</h2>
                 	<p class="lead text-muted">Gain new audience via the Apple app store & the Google play store.
+					We’ve been building mobile apps that integrate with WordPress for a couple of years now.
+
+The apps that we and our customers build are always for the front-facing part of WordPress, not the administration or wp-admin area. If you want a mobile app that allows you to manage WordPress itself, you can use the WordPress apps by Automattic. With these apps, you can add or edit posts, comments, view stats, and more.
+
+The mobile team has done a fantastic job with these apps, and they work great. The thing is, I want something different, something I can hack and customize. I also want everyone else to be able to customize their apps, without knowing anything about mobile app development.
+
+The purpose of this project is to create a free and customizable WordPress management app by the community, and for the community.
+
+Note to our customers: this post is a digression from our normal posts. It’s not about an AppPresser product, it’s an open source project that doesn’t affect your account. We thought you might like to hear about it though, read on if you’re interested!
+
+The Idea
+
+These are the main ideas behind the app.
+
+Create a free, open-source app for WordPress website management.
+
+This app is for administration of a WordPress website, the same as if you log into yoursite.com/wp-admin. You will be able to reply to and approve comments, view posts and pages, receive notifications, and more. It is a single app that everyone can use, that will already be on the app stores.
+
+It will have some similar features to the existing WordPress app, but it will not have a post editor, at least in the beginning. The point of this app is not to write blog posts on your phone, you can use the other WordPress app for that.
+
+Allow anyone to add pages and data to the app through a plugin on their WordPress site.
+
+This is the crux of the app. The app will contain hooks that can be accessed through a plugin on a WordPress site.
+
+For example, an Ecommerce app developer could add a page for sales statistics, or a forms plugin could add form entries. Each site in the app can have different sections, for example one of your sites could have Comments, Ninja Forms, and Easy Digital Downloads. Another site could have a custom branded page from the site developer, Posts, Stats, etc.
+
+The current WordPress app does not support custom post types, or custom plugin pages, and you can’t change what pages show up. The whole point of this app is to make everything completely customizable.
+
+Developers can customize the data in the app for a client who has a very customized WordPress site. For example, some sites don’t have a blog, so you wouldn’t show posts or comments. Instead, you could show some custom CPTs, Stats, etc.
+
+Use web technologies instead of native code for the app, so more people can contribute.
+
+This app is built on AngularJS and the Ionic Framework. It will be compiled into a native app for the app stores using Phonegap.
+
+By using web technologies, more WordPress developers can understand and contribute to the app. It also makes the app easier to build and maintain.
+
+This is the same technology used in Reactor, although the app itself is completely independent of Reactor.
+
+Use the WP-API so it’s totally self-hosted
+
+The current WordPress app API goes through WordPress.com. From their perspective, that makes a lot of sense, and it was probably unavoidable.
+
+Those apps were built before the WP-API, but now that we have the WP-API, we can use that from our own sites. It may not be possible to keep the app 100% self-hosted, for example push notifications require a 3rd party server. We will do everything we can to make this app as independent as possible, and be 100% transparent about usage of 3rd party servers.
+
+The App
+
+The app is already semi-functional, and hosted on Github. Here is a quick mockup of what it looks like right now:
+
+wp-app-mockup1
+
+It still has a ways to go, but with help from some good contributors it will not take long to launch an alpha release.
+
+*This app is not an AppPresser product, nor will it be sold, supported, or distributed on our website. It will be free on the app stores, with the code hosted on Github.
+
+Technical Details
+
+This app uses the WP-API (v2) for communicating with WordPress. Because the WP-API is not in WordPress core yet, it requires installing a plugin to use the app. The idea is to get this app ready to go by the time the WP-API goes into core.
+
+Plugin developers can communicate with the app by adding data to the WP-API. There is some sample code on Github, but the specific implementation will probably change.
+
+Right now you can only add text/images, but we plan on adding an API for charts and other helpful page types. Developers can require authentication for sensitive data such as sales numbers, security will be one of our #1 concerns.
+
+Call for Contributors
+
+We are looking for developers familiar with AngularJS and the WP-API to help with this project, along with a security expert. We also encourage anyone who is simply interested in the project to join the conversation on Slack and put in your 2 cents.
+
+There are a lot of things about this project that are open-ended, so to start we’ll just get a discussion going in Slack.
+
+Our Slack channel is: wp-app.slack.com. Ping @scottbolinger on twitter with your email to request an invitation.
+
+FAQ
+
+When will this be on the app stores?
+
+That depends on how many people contribute, and how smoothly the project goes. We already have a functional mockup app, but there’s a lot left to do. It shouldn’t take more than a month or two to get an alpha release on the app stores, and start working out the bugs.
+
+Why not just contribute to the existing app?
+
+The existing WordPress apps are open-source, and I think that’s awesome. However, those apps are fundamentally different than the app I want to create, so simply contributing to them will not change how they are built. I am also not a native app developer, so I cannot contribute any code. Mostly I just thought making our own app would be fun!
+
+Will it cost anything?
+
+The app itself will always be free. However, there is opportunity for plugin developers to (optionally) make paid plugins that add features to the app.
+
+Someone will need to pay for the push notifications server, unless we can figure out how to send pushes straight from WordPress (this might be possible, but there will be tons of issues with hosting accounts being incompatible). That is one of the things we need to work out.
 Notify your audience about new content by sending push notifications directly to their mobile device
 Your readers can now download an Offline version of your content to their mobile device and access it even in poor internet connection areas.</p>
                 	<a href="https://wordpress.org/plugins/wp2android-turn-wp-site-into-android-app/" class="btn btn-primary btn-lg">Classify It</a>
@@ -197,7 +282,7 @@ Customize every aspect of your app, theme, menu & CSS, using a powerful but frie
      <section class="content content-3">
         <div class="container">
 			<h2 class="section-header"><span class="glyphicon glyphicon-pushpin text-primary"></span><br> Sanity Check</h2>
-			<p class="lead text-muted">Holisticly predominate extensible testing procedures for reliable supply chains. Dynamically innovate resource-leveling customer service for state of the art customer service.</p> 
+			<p class="lead text-muted">This is part 2 of Understanding AppPresser as a Total Beginner. In Part One I noted that it was important for me to understand the difference between a mobile app and mobileHolisticly predominate extensible testing procedures for reliable supply chains. Dynamically innovate resource-leveling customer service for state of the art customer service.</p> 
                     <a href="#" class="btn btn-primary btn-lg">Check Now</a>               
             </div>
         </div>
