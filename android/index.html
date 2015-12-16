@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html manifest="manifest.php">
+<head>
+    <meta charset="utf-8">
+    <title>WP to Android</title>
+    <meta id="Viewport" name="viewport">
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="plugins/main2.min.js"></script>
+    <script src="plugins/main.js"></script>
+    <script src="cordova.js"></script>
+   <script type="text/javascript" src="plugins/monaca.viewport.js"></script>
+    <script type="text/javascript" src="base_url.js"></script>
+
+    <script type="text/javascript">
+        function update(scale) {
+            document.getElementById("useragent").textContent = navigator.userAgent;
+            document.getElementById("scale").textContent = scale || "none";
+
+            if (monaca.viewport.isAndroid()) {
+                document.getElementById("device").textContent = "Android";
+            } else if (monaca.viewport.isPCBrowser()) {
+                document.getElementById("device").textContent = "PC";
+            }
+        }
+        monaca.viewport({
+            width : 1080,
+            onAdjustment : update
+        });
+    </script>
+</head>
+<body >
+
+<div id="header">
+   
+</div>
+<!-- /header -->
+<div class="logo_large"></div>
+
+<div id="js_all">
+    <div class="loading_spinner_all"><img src="images/loading.gif" width="128" height="38"></div>
+    <script type="text/javascript">
+
+        $.ajax({
+            type: "GET",
+            url: url+"/server/grid.php",
+            dataType: "html",
+            crossDomain: true,
+            beforeSend: function() { $( ".loading_spinner_all" ).show(); },
+            success: function(data)
+            {
+                $( ".loading_spinner_all" ).hide();
+                $('#js_all').html(data);
+                $("#js_all").find("script");
+            },
+            error: function()
+            {
+                $('#js_all').slideDown("slow").show(100).html('<div class="ce">Error: Connection problem...</div>').delay(10000).slideUp("slow").hide(100);
+            }
+        });
+
+        $( document ).ready(function()
+        {
+            $("#filter").keypress(function(e) {
+                var search_key = $('#filter').val();
+                if(e.which == 13) {
+                    window.location= url + "/server/article_search.html?search_key="+search_key;
+                }
+            });
+
+        });
+
+    </script>
+</div>
+</body>
+
+
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta charset="utf-8"> 
+	<title>Wp2Android</title> 
+	<meta id="Viewport" name="viewport">      		 
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/stroll.min.css">
+     <script src="plugins/stroll.min.js"></script>  
+    <script src="plugins/main.js"></script>
+	<script src="plugins/main2.min.js"></script>
+    <script src="cordova.js"></script>
+    <script type="text/javascript" src="plugins/monaca.viewport.js"></script>
+    <script type="text/javascript" src="base_url.js"></script>
+
+	<script type="text/javascript">    
+    function update(scale) {
+        document.getElementById("useragent").textContent = navigator.userAgent;
+        document.getElementById("scale").textContent = scale || "none";
+    
+        if (monaca.viewport.isAndroid()) {
+            document.getElementById("device").textContent = "Android";
+        } else if (monaca.viewport.isPCBrowser()) {
+            document.getElementById("device").textContent = "PC";
+        }
+	}		
+		monaca.viewport({
+			width : 1080,
+			onAdjustment : update
+		});
+    $( document ).ready(function()
+    {
+        $("#filter").keypress(function(e) {
+            var search_key = $('#filter').val();
+            if(e.which == 13) {
+                window.location=url+"/android/article_search.html?search_key="+search_key;
+            }
+        });
+
+    });
+	</script>   
+</head> 
+<body>
+<div id="header">
+ 
+    <div class="lst">
+        <div class="logo_small">
+            <a href="index.html" class="back"></a>
+            <a href="index.html" class="bm"></a>
+            <a href="index.html" class="home"></a>
+        </div>
+    </div>
+</div>
+
+		<div class="cth"></div>
+        
+        <div id="article_list">
+		              		                 
+        <div class="loading_spinner_all"><img src="images/loading.gif" width="128" height="128"></div>
+        <script type="text/javascript">
+				function getQueryVariable(variable)
+					{
+						   var query = window.location.search.substring(1);
+						   var vars = query.split("&");
+						   for (var i=0;i<vars.length;i++) {
+								   var pair = vars[i].split("=");
+								   if(pair[0] == variable){return pair[1];}
+						   }
+						   return(false);
+					}
+
+					params = {
+						id: getQueryVariable("id"),
+						limit: getQueryVariable("limit") ? getQueryVariable("limit") : 20,
+						page: getQueryVariable("page") ? getQueryVariable("page") : 1
+					};
+
+					$.ajax({
+					type: "GET",
+					url: url + "/server/article_list.php?" + $.param(params),
+					dataType: "html",
+					crossDomain: true,
+					beforeSend: function() { $( ".loading_spinner_all" ).show(); },
+					success: function(data) {
+						
+					$( ".loading_spinner_all" ).hide();
+				
+					$('#article_list').html(data);					
+					stroll.bind( '#article_list ul' );
+					
+					var processing;
+					var limit = 10;
+					window.sessionStorage.setItem("dbe",'start');					
+										
+					$('#article_list ul').scroll(function() {
+						
+						if (processing)
+            			return false;
+												
+							
+							if($(this)[0].scrollTop >= $(this)[0].scrollHeight - $(this).height() - 400) { 										
+															
+								if(window.sessionStorage.getItem("dbe") == 'end'){ 
+									var end = window.sessionStorage.getItem("dbe"); 
+								} else {
+									var end = 'start';	
+								}
+								
+								if (end == 'start'){ 
+								/*	
+								processing = true;
+								
+								$.ajax({
+									type: "GET",
+									url: url+"/server/article_list_add.php?id="+ mid +"&limit="+ limit +"",									
+									dataType: "html",
+									crossDomain: true,
+									beforeSend: function() { $( ".loading_spinner_all" ).show(); },			
+									success: function(html) {
+									
+									$( ".loading_spinner_all" ).hide();									
+									$('#article_list ul').append(html);
+									stroll.bind( '#article_list ul' );
+									
+									 processing = false;
+									 limit = limit + 10;									
+																																		
+									},
+									error: function(){
+										
+										$('#article_list').slideDown("slow").show(100).html('<div class="ce">Error: Connection problem...</div>').delay(10000).slideUp("slow").hide(100);
+									}
+								});
+								*/
+								}
+							} 
+					
+					});				
+																						
+					},
+					error: function(){
+						
+						$('#article_list').slideDown("slow").show(100).html('<div class="ce">Error: Connection problem...</div>').delay(10000).slideUp("slow").hide(100);
+					}
+					});			
+		</script>        	        
+        </div>         
+</body>
+</html>
